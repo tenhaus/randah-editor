@@ -2,20 +2,15 @@ import React, {Component} from 'react';
 import Radium from 'radium';
 import { createContainer } from 'meteor/react-meteor-data';
 
+import Workspace from './Workspace/Workspace';
 import Style from './_App.js';
 
 class App extends Component {
   render() {
-    return (
-      <div style={Style.main}>
-        {this.props.test}
-        </div>
-      );
+    return <Workspace />;
   }
 }
 
 export default createContainer(() => {
-  return {
-    test: 'hey hey'
-  };
+  return {};
 }, Radium(App));
