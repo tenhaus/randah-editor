@@ -9,6 +9,7 @@
     "radium": "^0.18.1",
     "react": "^15.3.0",
     "react-addons-pure-render-mixin": "^15.3.0",
-    "react-dom": "^15.3.0"
+    "react-dom": "^15.3.0",
+    "react-dropzone": "^3.5.3"
   }
 }

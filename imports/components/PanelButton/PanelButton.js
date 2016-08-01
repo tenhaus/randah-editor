@@ -13,7 +13,7 @@ class PanelButton extends React.Component {
     ];
 
     return (
-      <div style={Style.main}>
+      <div style={Style.main} onClick={this.props.onClick}>
         <i className={className}
           aria-hidden="true"
           style={iconStyle}>
