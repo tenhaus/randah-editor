@@ -5,7 +5,9 @@ class PanelMenu extends React.Component {
 
   render() {
     return (
-      <div style={Style.main}></div>
+      <div style={Style.main}>
+        {this.props.children}
+      </div>
     );
   }
 

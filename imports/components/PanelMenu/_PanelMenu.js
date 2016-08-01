@@ -1,7 +1,7 @@
 export default {
   main: {
-    width: 400,
-    height: 80,
-    backgroundColor: '#fff'
+    display: 'flex',
+    backgroundColor: '#fff',
+    padding: 5
   }
 }

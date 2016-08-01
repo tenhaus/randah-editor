@@ -1,6 +1,6 @@
 import React from 'react';
 import PanelMenu from '../PanelMenu/PanelMenu';
-
+import PanelButton from '../PanelButton/PanelButton';
 import Style from './_Workspace';
 
 class Workspace extends React.Component {
@@ -9,7 +9,12 @@ class Workspace extends React.Component {
     return (
       <div style={Style.main}>
         <div style={Style.menuContainer}>
-          <PanelMenu />
+          <PanelMenu>
+            <PanelButton />
+            <PanelButton />
+            <PanelButton />
+            <PanelButton />
+          </PanelMenu>
         </div>
       </div>
     );
