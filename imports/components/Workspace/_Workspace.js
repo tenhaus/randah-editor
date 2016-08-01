@@ -20,17 +20,18 @@ export default {
   },
 
   workImageContainer: {
-    width: '90%'
+    width: '80%'
   },
 
   workImage: {
     width: '100%',
-    outline: '20px solid rgba(0,0,0,0.4)',
-    transition: 'filter 0.2s',
+    outline: '50px solid rgba(0,0,0,0.4)',
+    transition: 'outline-width 0.1s, outline-color 0.1s, filter 0.2s',
     ':hover': {
-      outline: '10px solid rgba(0,0,0,0.7)',
+
+      outline: '5px solid rgba(0,0,0,0.9)',
       cursor: 'pointer',
-      filter: 'opacity(90%) blur(10px)'
+      // filter: 'opacity(90%) blur(10px)'
     }
   },
 
