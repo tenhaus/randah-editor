@@ -2,5 +2,5 @@
 
 To run:
 
-meteor npm install
-meteor
+- meteor npm install
+- meteor
