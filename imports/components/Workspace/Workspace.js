@@ -23,6 +23,7 @@ class Workspace extends React.Component {
             <img style={Style.workImage} src='/img/bg3.jpg' />
           </div>
         </div>
+
         <div style={Style.menuContainer}>
           <PanelMenu>
             <Dropzone style={Style.dropzone}
@@ -35,6 +36,15 @@ class Workspace extends React.Component {
             <PanelButton icon='fa-circle-o' iconSize='2.3rem' />
           </PanelMenu>
         </div>
+
+        {/*
+        <div style={Style.toolsContainer}>
+          <PanelMenu direction='column'>
+            <PanelButton icon='fa-arrows' />
+            <PanelButton icon='fa-arrows' />
+          </PanelMenu>
+        </div>
+        */}
       </div>
     );
   }
