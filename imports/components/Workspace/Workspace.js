@@ -1,36 +1,67 @@
 import React from 'react';
 import Radium from 'radium';
-import Dropzone from 'react-dropzone';
+import FilePicker from 'filepicker-js';
 import PanelMenu from '../PanelMenu/PanelMenu';
 import PanelButton from '../PanelButton/PanelButton';
+import WorkImage from '../WorkImage/WorkImage';
+
 import Style from './_Workspace';
 
 class Workspace extends React.Component {
 
-  onAddClick() {
-    console.log('Add');
+  constructor() {
+    super();
+    this.onAddClick = this.onAddClick.bind(this);
+    this.onAddSuccess = this.onAddSuccess.bind(this);
+
+    this.state = {
+      image: null
+    };
   }
 
-  onAddFile(files) {
-    let file = files[0];
+  onAddClick() {
+    FilePicker.pick(
+      {hide: true},
+      this.onAddSuccess, null, this.onAddProgress
+    );
+  }
+
+  onAddSuccess(blob) {
+    this.setState({
+      image: blob.url
+    });
+    
+    console.log('done', blob.url);
+  }
+
+  onAddProgress(progress) {
+    console.log(progress.progress + '%');
   }
 
   render() {
+    let workImage = null;
+
+    if(!this.state.image) {
+      FilePicker.pick(
+        {hide: true},
+        this.onAddSuccess, null, this.onAddProgress
+      );
+    }
+    else {
+      workImage = (
+        <WorkImage image={this.state.image} />
+      )
+    }
+
     return (
       <div style={Style.main}>
         <div style={Style.content}>
-          <div style={Style.workImageContainer}>
-            <img style={Style.workImage} src='/img/bg3.jpg' />
-          </div>
+          {workImage}
         </div>
 
         <div style={Style.menuContainer}>
           <PanelMenu>
-            <Dropzone style={Style.dropzone}
-              onDrop={this.onAddFile}
-              multiple={false}>
-              <PanelButton icon='fa-plus-square-o' />
-            </Dropzone>
+            <PanelButton icon='fa-plus-square-o' onClick={this.onAddClick} />
             <PanelButton icon='fa-arrows' iconSize='2rem' />
             <PanelButton icon='fa-bell-o' iconSize='2.1rem' />
             <PanelButton icon='fa-circle-o' iconSize='2.3rem' />
