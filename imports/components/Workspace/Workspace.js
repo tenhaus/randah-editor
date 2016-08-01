@@ -17,7 +17,11 @@ class Workspace extends React.Component {
   render() {
     return (
       <div style={Style.main}>
-        <div style={Style.content}></div>
+        <div style={Style.content}>
+          <div style={Style.workImageContainer}>
+            <img style={Style.workImage} src='/img/sample.jpg' />
+          </div>
+        </div>
         <div style={Style.menuContainer}>
           <PanelMenu>
             <Dropzone style={Style.dropzone}
