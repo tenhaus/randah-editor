@@ -4,6 +4,7 @@ import FilePicker from 'filepicker-js';
 import { createContainer } from 'meteor/react-meteor-data';
 import Workspace from './Workspace/Workspace';
 import Style from './_App.js';
+import {ImageLibrary} from '../api/library.js';
 
 class App extends Component {
   constructor() {
@@ -17,5 +18,7 @@ class App extends Component {
 }
 
 export default createContainer(() => {
-  return {};
+  return {
+    library: ImageLibrary.find().fetch()
+  };
 }, Radium(App));

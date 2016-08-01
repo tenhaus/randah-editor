@@ -4,6 +4,7 @@ import FilePicker from 'filepicker-js';
 import PanelMenu from '../PanelMenu/PanelMenu';
 import PanelButton from '../PanelButton/PanelButton';
 import WorkImage from '../WorkImage/WorkImage';
+import { ImageLibrary } from '../../api/library.js';
 
 import Style from './_Workspace';
 
@@ -30,8 +31,9 @@ class Workspace extends React.Component {
     this.setState({
       image: blob.url
     });
-    
-    console.log('done', blob.url);
+
+    ImageLibrary.insert(blob);
+    console.log('done', blob);
   }
 
   onAddProgress(progress) {
@@ -62,7 +64,7 @@ class Workspace extends React.Component {
         <div style={Style.menuContainer}>
           <PanelMenu>
             <PanelButton icon='fa-plus-square-o' onClick={this.onAddClick} />
-            <PanelButton icon='fa-arrows' iconSize='2rem' />
+            <PanelButton icon='fa-folder-o' iconSize='2rem' />
             <PanelButton icon='fa-bell-o' iconSize='2.1rem' />
             <PanelButton icon='fa-circle-o' iconSize='2.3rem' />
           </PanelMenu>
