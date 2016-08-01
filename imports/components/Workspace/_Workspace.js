@@ -25,7 +25,13 @@ export default {
 
   workImage: {
     width: '100%',
-    outline: '20px solid rgba(0,0,0,0.4)'
+    outline: '20px solid rgba(0,0,0,0.4)',
+    transition: 'filter 0.2s',
+    ':hover': {
+      outline: '10px solid rgba(0,0,0,0.7)',
+      cursor: 'pointer',
+      filter: 'opacity(90%) blur(10px)'
+    }
   },
 
   dropzone: {

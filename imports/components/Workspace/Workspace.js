@@ -1,4 +1,5 @@
 import React from 'react';
+import Radium from 'radium';
 import Dropzone from 'react-dropzone';
 import PanelMenu from '../PanelMenu/PanelMenu';
 import PanelButton from '../PanelButton/PanelButton';
@@ -19,7 +20,7 @@ class Workspace extends React.Component {
       <div style={Style.main}>
         <div style={Style.content}>
           <div style={Style.workImageContainer}>
-            <img style={Style.workImage} src='/img/sample.jpg' />
+            <img style={Style.workImage} src='/img/bg3.jpg' />
           </div>
         </div>
         <div style={Style.menuContainer}>
@@ -40,4 +41,4 @@ class Workspace extends React.Component {
 
 }
 
-export default Workspace;
+export default Radium(Workspace);
