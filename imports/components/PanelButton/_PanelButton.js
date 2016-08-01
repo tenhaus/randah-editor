@@ -8,6 +8,7 @@ export default {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    color: '#333',
 
     ':hover': {
       fontSize: '3rem',
