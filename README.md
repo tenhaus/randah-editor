@@ -1,6 +1,6 @@
 # Randah
 
-Not sure what this is. I'm just having fun building an interface without the overhead of having an actual goal.
+Not sure what this is. I'm just having fun building an interface without the overhead of having a goal.
 
 To run:
 
