@@ -69,8 +69,10 @@ class Workspace extends React.Component {
 
     if(this.state.library) {
       library = (
-        <Library files={this.props.imageLibrary}
-          onSelectFile={this.onSelectFile} />
+        <div style={Style.imageLibraryContainer}>
+          <Library files={this.props.imageLibrary}
+            onSelectFile={this.onSelectFile} />
+        </div>
       );
     }
 
@@ -81,9 +83,7 @@ class Workspace extends React.Component {
           {workImage}
         </div>
 
-        <div style={Style.imageLibraryContainer}>
-          {library}
-        </div>
+        {library}
 
         <div style={Style.menuContainer}>
           <PanelMenu>
