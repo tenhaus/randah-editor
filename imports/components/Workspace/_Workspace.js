@@ -8,6 +8,17 @@ export default {
     justifyContent: 'center'
   },
 
+  imageLibraryContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',    
+    position: 'fixed',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0
+  },
+
   toolsContainer: {
     position: 'fixed',
     top: 0,
@@ -26,7 +37,7 @@ export default {
     left: 0,
     right: 0,
     bottom: 0
-  },  
+  },
 
   dropzone: {
     width: 'auto',

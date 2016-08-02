@@ -13,12 +13,14 @@ class App extends Component {
   }
 
   render() {
-    return <Workspace />;
+    return <Workspace
+      imageLibrary={this.props.imageLibrary} 
+    />;
   }
 }
 
 export default createContainer(() => {
   return {
-    library: ImageLibrary.find().fetch()
+    imageLibrary: ImageLibrary.find().fetch()
   };
 }, Radium(App));
