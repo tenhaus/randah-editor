@@ -43,17 +43,12 @@ class Workspace extends React.Component {
   render() {
     let workImage = null;
 
-    if(!this.state.image) {
-      FilePicker.pick(
-        {hide: true},
-        this.onAddSuccess, null, this.onAddProgress
-      );
-    }
-    else {
+    if(this.state.image) {
       workImage = (
         <WorkImage image={this.state.image} />
-      )
+      );
     }
+
 
     return (
       <div style={Style.main}>
