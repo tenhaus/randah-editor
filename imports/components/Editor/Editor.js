@@ -12,8 +12,12 @@ class Editor extends React.Component {
   }
 
   onKeyDown(e) {
+    e.preventDefault();
     let story = Text.findOne({story: 1});
-    Processing.test(e.key);
+    var word = Processing.add(e.key);
+
+    if(word) console.log(word);
+    if(!word) return;
 
     if(story) {
       Text.update(
@@ -26,8 +30,6 @@ class Editor extends React.Component {
         copy: e.key
       });
     }
-
-    e.preventDefault();
   }
 
   onKeyUp(e) {
