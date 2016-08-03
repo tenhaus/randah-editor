@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import Radium from 'radium';
 import FilePicker from 'filepicker-js';
-import { createContainer } from 'meteor/react-meteor-data';
 import Workspace from './Workspace/Workspace';
 import Style from './_App.js';
-import {ImageLibrary} from '../api/library.js';
 
 class App extends Component {
   constructor() {
@@ -13,14 +11,10 @@ class App extends Component {
   }
 
   render() {
-    return <Workspace
-      imageLibrary={this.props.imageLibrary} 
-    />;
+    return (
+      <Workspace text={this.props.text} />
+    );
   }
 }
 
-export default createContainer(() => {
-  return {
-    imageLibrary: ImageLibrary.find().fetch()
-  };
-}, Radium(App));
+export default Radium(App);

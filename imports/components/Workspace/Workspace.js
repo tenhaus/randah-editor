@@ -5,6 +5,7 @@ import PanelMenu from '../PanelMenu/PanelMenu';
 import PanelButton from '../PanelButton/PanelButton';
 import WorkImage from '../WorkImage/WorkImage';
 import Library from '../Library/Library';
+import Editor from '../Editor/Editor';
 import { ImageLibrary } from '../../api/library.js';
 
 import Style from './_Workspace';
@@ -20,7 +21,8 @@ class Workspace extends React.Component {
 
     this.state = {
       image: null,
-      library: false
+      library: false,
+      editor: false
     };
   }
 
@@ -60,6 +62,7 @@ class Workspace extends React.Component {
   render() {
     let workImage = null;
     let library = null;
+    let editor = null;
 
     if(this.state.image) {
       workImage = (
@@ -78,23 +81,17 @@ class Workspace extends React.Component {
 
 
     return (
-      <div style={Style.main}>
-        <div style={Style.content}>
-          {workImage}
-        </div>
+      <div style={Style.main} onKeyDown={this.onKeyDown}>
+        <Editor />
 
-        {library}
-
-        <div style={Style.menuContainer}>
-          <PanelMenu>
-            <PanelButton icon='fa-plus-square-o'
-              onClick={this.onAddClick} />
-            <PanelButton icon='fa-folder-o' iconSize='2rem'
-              onClick={this.toggleLibrary} />
-            <PanelButton icon='fa-bell-o' iconSize='2.1rem' />
-            <PanelButton icon='fa-circle-o' iconSize='2.3rem' />
-          </PanelMenu>
-        </div>
+          <div style={Style.menuContainer}>
+            <PanelMenu>
+              <PanelButton icon='fa-plus-square-o' />
+              <PanelButton icon='fa-folder-o' iconSize='2rem' />
+              <PanelButton icon='fa-bell-o' iconSize='2.1rem' />
+              <PanelButton icon='fa-circle-o' iconSize='2.3rem' />
+            </PanelMenu>
+          </div>
 
         {/*
         <div style={Style.toolsContainer}>
