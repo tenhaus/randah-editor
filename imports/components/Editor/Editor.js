@@ -1,63 +1,105 @@
 import React from 'react';
-import Style from './_Editor';
 import { createContainer } from 'meteor/react-meteor-data';
-import {Text} from '../../api/text';
+
+import {Chunks} from '../../api/chunks';
 import Processing from '../../lib/processing';
+import Chunk from '../Chunk/Chunk';
+
+import Style from './_Editor';
 
 class Editor extends React.Component {
 
   constructor() {
     super();
     this.onKeyDown = this.onKeyDown.bind(this);
+    this.renderChunks = this.renderChunks.bind(this);
+
+    this.state = {
+      currentChunk: null
+    };
+  }
+
+  componentWillReceiveProps(props) {
+    console.log('new props', props);
   }
 
   onKeyDown(e) {
     e.preventDefault();
-    let story = Text.findOne({story: 1});
-    var word = Processing.add(e.key);
 
-    if(word) console.log(word);
-    if(!word) return;
+    var chunk = Processing.add(e.key);
 
-    if(story) {
-      Text.update(
-        {_id: story._id}, {story: 1, copy: story.copy + e.key}
-      );
-    }
-    else {
-      Text.insert({
-        story: 1,
-        copy: e.key
+    // Save current chunk in this state.currentChunk
+    if(!chunk.isWord) {
+      this.setState({
+        currentChunk: chunk
       });
+
+      return;
     }
+
+    this.state.currentChunk.story = 1;
+    // If it's a word we save it and clear
+    Chunks.insert(this.state.currentChunk);
+    this.setState({
+      currentChunk: null
+    });
+
+
+
+    // let story = Text.findOne({story: 1});
+    //
+    // if(story) {
+    //   Text.update(
+    //     {_id: story._id}, {story: 1, copy: story.copy + e.key}
+    //   );
+    // }
+    // else {
+    //   Text.insert({
+    //     story: 1,
+    //     copy: e.key
+    //   });
+    // }
   }
 
   onKeyUp(e) {
     e.preventDefault();
   }
 
+  renderChunks() {
+
+    // Render our saved chunks
+    let renderedChunks = _.map(this.props.chunks, function(chunk) {
+      return <Chunk chunk={chunk} key={chunk._id} />;
+    });
+
+    // Render our current / temp chunk
+    if(this.state.currentChunk) {
+      renderedChunks.push(
+        <Chunk key='currentChunk' chunk={this.state.currentChunk} />
+      );
+    }
+
+    return renderedChunks;
+  }
+
   render() {
+    let renderedChunks = this.renderChunks();
+
     return (
       <div style={Style.editorContainer}
-        onKeyDown={this.onKeyDown}
-        onKeyUp={this.onKeyUp}
-        tabIndex="1">
+        onKeyDown={this.onKeyDown} onKeyUp={this.onKeyUp} tabIndex="1">
+
         <div style={Style.content}>
-          {this.props.text.copy}
+          {renderedChunks}
         </div>
+
       </div>
     );
   }
 }
 
-Editor.defaultProps = {
-  text: {
-    copy: ''
-  }
-}
-
 export default createContainer(() => {
   return {
-    text: Text.findOne({story: 1})
+    chunks: Chunks.find({story: 1}).fetch()
   };
 }, Editor);

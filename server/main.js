@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import {ImageLibrary} from '../imports/api/library.js';
-import {Text} from '../imports/api/text.js';
+import {Chunks} from '../imports/api/chunks.js';
 
 Meteor.startup(() => {
   // code to run on server at startup

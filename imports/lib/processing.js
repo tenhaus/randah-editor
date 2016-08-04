@@ -29,18 +29,28 @@ const SPACE = ' ';
 var current = '';
 
 module.exports.add = function(key) {
-  var word = null;
+  var isWord = false;
+  var currentChunk;
 
   if(!isWhiteSpace(key)) {
     current += key;
+    currentChunk = current;
   }
   else {
-    word = current;
+    isWord = true;
+    currentChunk = current;
     current = '';
-    console.log(word);
   }
 
-  return word;
+  return getResponse(key, isWord, currentChunk)
+};
+
+var getResponse = function(character, isWord, currentChunk) {
+  return {
+    character: character,
+    isWord: isWord,
+    currentChunk: currentChunk
+  };
 };
 
 var isWhiteSpace = function(key) {
