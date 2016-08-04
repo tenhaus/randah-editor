@@ -49,6 +49,11 @@ module.exports.add = function(key) {
   var isWord = false;
   var currentChunk;
 
+  // This is really needed. Do it next.
+  if(key === DELETE) {
+
+  }
+
   if(isSpecial(key)) {
     return;
   }
