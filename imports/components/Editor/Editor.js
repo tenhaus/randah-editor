@@ -47,17 +47,26 @@ class Editor extends React.Component {
     e.preventDefault();
   }
 
+  onChunkSelected(chunk) {
+    console.log(chunk);
+  }
+
   renderChunks() {
+    let self = this;
 
     // Render our saved chunks
     let renderedChunks = _.map(this.props.chunks, function(chunk) {
-      return <Chunk chunk={chunk} key={chunk._id} />;
+      return (
+        <Chunk chunk={chunk} key={chunk._id}
+          onSelected={self.onChunkSelected} />
+      );
     });
 
     // Render our current / temp chunk
     if(this.state.currentChunk) {
       renderedChunks.push(
-        <Chunk key='currentChunk' chunk={this.state.currentChunk} />
+        <Chunk key='currentChunk' chunk={this.state.currentChunk}
+          onSelected={self.onChunkSelected} />
       );
     }
 
