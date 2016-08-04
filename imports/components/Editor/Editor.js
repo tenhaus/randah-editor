@@ -4,6 +4,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 import {Chunks} from '../../api/chunks';
 import Processing from '../../lib/processing';
 import Chunk from '../Chunk/Chunk';
+import Cursor from '../Cursor/Cursor';
 
 import Style from './_Editor';
 
@@ -19,14 +20,11 @@ class Editor extends React.Component {
     };
   }
 
-  componentWillReceiveProps(props) {
-    console.log('new props', props);
-  }
-
   onKeyDown(e) {
     e.preventDefault();
 
     var chunk = Processing.add(e.key);
+    if(!chunk) return;
 
     // Save current chunk in this state.currentChunk
     if(!chunk.isWord) {
@@ -43,22 +41,6 @@ class Editor extends React.Component {
     this.setState({
       currentChunk: null
     });
-
-
-
-    // let story = Text.findOne({story: 1});
-    //
-    // if(story) {
-    //   Text.update(
-    //     {_id: story._id}, {story: 1, copy: story.copy + e.key}
-    //   );
-    // }
-    // else {
-    //   Text.insert({
-    //     story: 1,
-    //     copy: e.key
-    //   });
-    // }
   }
 
   onKeyUp(e) {
@@ -91,6 +73,7 @@ class Editor extends React.Component {
 
         <div style={Style.content}>
           {renderedChunks}
+          <Cursor />
         </div>
 
       </div>

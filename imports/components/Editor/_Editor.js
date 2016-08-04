@@ -1,3 +1,5 @@
+var cursorOpacity = 1;
+
 export default {
   editorContainer: {
     position: 'absolute',
@@ -9,9 +11,16 @@ export default {
 
   content: {
     fontSize: '2rem',
+    display: 'flex',
+    flexWrap: 'wrap',
     color: '#fff',
     padding: '2rem',
     paddingBottom: '10rem',
     wordBreak: 'break-all'
+  },
+
+  cursor: {
+    marginLeft: '-0.5rem',
+    opacity: cursorOpacity
   }
 };

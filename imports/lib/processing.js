@@ -3,34 +3,55 @@ const TAB = 'Tab';
 const CLEAR = 'Clear';
 const ENTER = 'Enter';
 const SPACE = ' ';
+const SHIFT = 'Shift';
+const CONTROL = 'Control'
+const ALT = 'Alt'
+const PAUSE = 'Pause'
+const CAPSLOCK = 'CapsLock'
+const ESCAPE = 'Escape'
+const PAGEUP = 'PageUp'
+const PAGEDOWN = 'PageDown'
+const END = 'End'
+const HOME = 'Home'
+const ARROWLEFT = 'ArrowLeft'
+const ARROWUP = 'ArrowUp'
+const ARROWRIGHT = 'ArrowRight'
+const ARROWDOWN = 'ArrowDown'
+const INSERT = 'Insert'
+const DELETE = 'Delete'
+const F1 = 'F1'
+const F2 = 'F2'
+const F3 = 'F3'
+const F4 = 'F4'
+const F5 = 'F5'
+const F6 = 'F6'
+const F7 = 'F7'
+const F8 = 'F8'
+const F9 = 'F9'
+const F10 = 'F10'
+const F11 = 'F11'
+const F12 = 'F12'
+const NUMLOCK = 'NumLock'
+const SCROLLLOCK = 'ScrollLock'
+const META = 'Meta'
 
-  // 16: 'Shift',
-  // 17: 'Control',
-  // 18: 'Alt',
-  // 19: 'Pause',
-  // 20: 'CapsLock',
-  // 27: 'Escape',
-  // 33: 'PageUp',
-  // 34: 'PageDown',
-  // 35: 'End',
-  // 36: 'Home',
-  // 37: 'ArrowLeft',
-  // 38: 'ArrowUp',
-  // 39: 'ArrowRight',
-  // 40: 'ArrowDown',
-  // 45: 'Insert',
-  // 46: 'Delete',
-  // 112: 'F1', 113: 'F2', 114: 'F3', 115: 'F4', 116: 'F5', 117: 'F6',
-  // 118: 'F7', 119: 'F8', 120: 'F9', 121: 'F10', 122: 'F11', 123: 'F12',
-  // 144: 'NumLock',
-  // 145: 'ScrollLock',
-  // 224: 'Meta'
+var special = [
+  SHIFT, CONTROL,
+  ALT, PAUSE, CAPSLOCK, ESCAPE, PAGEUP, PAGEDOWN, END,
+  HOME, ARROWLEFT, ARROWUP, ARROWRIGHT, ARROWDOWN,
+  INSERT, DELETE, F1, F2, F3, F4, F5, F6, F7, F8,
+  F9, F10, F11, F12, NUMLOCK, SCROLLLOCK, META
+];
 
 var current = '';
 
 module.exports.add = function(key) {
   var isWord = false;
   var currentChunk;
+
+  if(isSpecial(key)) {
+    return;
+  }
 
   if(!isWhiteSpace(key)) {
     current += key;
@@ -55,4 +76,8 @@ var getResponse = function(character, isWord, currentChunk) {
 
 var isWhiteSpace = function(key) {
   return key === BACKSPACE || key === TAB || key === ENTER || key === SPACE;
+}
+
+var isSpecial = function(key) {
+  return _.contains(special, key);
 }
