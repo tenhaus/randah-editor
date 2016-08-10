@@ -5,7 +5,7 @@ import {Chunks} from '../../api/chunks';
 import Processing from '../../lib/processing';
 import Chunk from '../Chunk/Chunk';
 import Cursor from '../Cursor/Cursor';
-
+import Story from '../../domain/Story';
 import Style from './_Editor';
 
 class Editor extends React.Component {
@@ -14,6 +14,7 @@ class Editor extends React.Component {
     super();
     this.onKeyDown = this.onKeyDown.bind(this);
     this.renderChunks = this.renderChunks.bind(this);
+    this.story = new Story({storyId: 1});
 
     this.state = {
       currentChunk: null
@@ -24,22 +25,11 @@ class Editor extends React.Component {
     e.preventDefault();
 
     var chunk = Processing.add(e.key);
-    if(!chunk) return;
+    this.story.process(chunk);
 
-    // Save current chunk in this state.currentChunk
-    if(!chunk.isWord) {
-      this.setState({
-        currentChunk: chunk
-      });
-
-      return;
-    }
-
-    this.state.currentChunk.story = 1;
-    // If it's a word we save it and clear
-    Chunks.insert(this.state.currentChunk);
     this.setState({
-      currentChunk: null
+      chunks: this.story.chunks,
+      currentChunk: this.story.currentChunk
     });
   }
 
@@ -55,7 +45,7 @@ class Editor extends React.Component {
     let self = this;
 
     // Render our saved chunks
-    let renderedChunks = _.map(this.props.chunks, function(chunk) {
+    let renderedChunks = _.map(this.props.story.chunks, function(chunk) {
       return (
         <Chunk chunk={chunk} key={chunk._id}
           onSelected={self.onChunkSelected} />
@@ -92,6 +82,6 @@ class Editor extends React.Component {
 
 export default createContainer(() => {
   return {
-    chunks: Chunks.find({story: 1}).fetch()
+    story: new Story({storyId: 1})
   };
 }, Editor);

@@ -50,8 +50,11 @@ module.exports.add = function(key) {
   var currentChunk;
 
   // This is really needed. Do it next.
-  if(key === DELETE) {
 
+  if(key == BACKSPACE) {
+    var response = getResponse();
+    response.isBackspace = true;
+    return response;
   }
 
   if(isSpecial(key)) {
