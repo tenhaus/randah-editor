@@ -27,6 +27,7 @@ class Story {
     }
 
     // If it's a word we save it and clear
+    console.log(this.currentChunk);
     Chunks.insert(this.currentChunk);
     this.currentChunk = null;
   }

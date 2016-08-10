@@ -19,7 +19,7 @@ describe('Tests editor input', function() {
     console.log(result);
   });
 
-  it('Should do somethingt when the word is only white space', function() {
+  it('Should do something when the word is only white space', function() {
   });
 
   it('Should not process meta and alt keys', function() {
